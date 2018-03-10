@@ -1,0 +1,20 @@
+package me.zhulin.onlineshopping.enums;
+
+import lombok.Getter;
+
+/**
+ * Created By Zhu Lin on 3/9/2018.
+ */
+@Getter
+public enum ProductStatusEnum implements CodeEnum{
+    UP(0, "Available"),
+    DOWN(0, "Unavailable")
+    ;
+    private Integer code;
+    private String message;
+
+    ProductStatusEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+}
