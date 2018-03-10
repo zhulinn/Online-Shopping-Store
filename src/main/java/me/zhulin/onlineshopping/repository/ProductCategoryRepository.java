@@ -2,6 +2,7 @@ package me.zhulin.onlineshopping.repository;
 
 import me.zhulin.onlineshopping.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

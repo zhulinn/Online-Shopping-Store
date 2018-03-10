@@ -2,6 +2,7 @@ package me.zhulin.onlineshopping.service;
 
 import me.zhulin.onlineshopping.entity.ProductCategory;
 
+import javax.persistence.OrderBy;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ public interface CategoryService {
     Optional<ProductCategory> findOne(Integer categoryId);
 
     List<ProductCategory> findAll();
+
 
     List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
 

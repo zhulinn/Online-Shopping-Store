@@ -6,6 +6,7 @@ import me.zhulin.onlineshopping.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +25,16 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<ProductCategory> findAll() {
-        return productCategoryRepository.findAll();
+        List<ProductCategory> res = productCategoryRepository.findAll();
+        res.sort(Comparator.comparing(ProductCategory::getCategoryType));
+        return res;
     }
 
     @Override
     public List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList) {
-        return productCategoryRepository.findByCategoryTypeIn(categoryTypeList);
+        List<ProductCategory> res = productCategoryRepository.findByCategoryTypeIn(categoryTypeList);
+        res.sort(Comparator.comparing(ProductCategory::getCategoryType));
+        return res;
     }
 
     @Override
