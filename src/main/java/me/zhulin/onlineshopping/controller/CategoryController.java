@@ -28,21 +28,15 @@ public class CategoryController {
     @Autowired
     ProductService productService;
 
-    /**
-     * Show All Categories
-     */
-    @GetMapping({"/product","/index","/"})
-    public ModelAndView findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                @RequestParam(value = "size", defaultValue = "3") Integer size,
-                                Map<String, Object> map){
-        PageRequest request =  PageRequest.of(page - 1, size);
-        Page<ProductInfo> products = productService.findAll(request);
-        map.put("products",products);
-        map.put("currentPage",page);
-        map.put("size",size);
-        return new ModelAndView("/product/index",map);
-    }
 
+    /**
+     * Show products in category
+     * @param categoryType
+     * @param page
+     * @param size
+     * @param map
+     * @return
+     */
     @GetMapping("/category/{type}")
     public ModelAndView showOne(@PathVariable("type") Integer categoryType,
                                 @RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -59,7 +53,7 @@ public class CategoryController {
             return new ModelAndView("/category/show",map);
         }else {
             map.put("msg", "Category is not found!");
-            map.put("url", "/category/index");
+            map.put("url", "/");
             return new ModelAndView("common/error", map);
         }
     }

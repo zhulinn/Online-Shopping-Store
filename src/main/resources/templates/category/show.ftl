@@ -8,6 +8,5 @@
     <#include "../partials/_pagination.ftl">
 </div>
 </body>
-
 </html>
 

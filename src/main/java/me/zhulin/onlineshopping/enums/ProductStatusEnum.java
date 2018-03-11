@@ -17,4 +17,12 @@ public enum ProductStatusEnum implements CodeEnum{
         this.code = code;
         this.message = message;
     }
+
+    public String getStatus(Integer code) {
+
+        for(ProductStatusEnum statusEnum : ProductStatusEnum.values()) {
+            if(statusEnum.getCode() == code) return statusEnum.getMessage();
+        }
+        return "";
+    }
 }

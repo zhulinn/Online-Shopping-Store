@@ -12,7 +12,7 @@
 
                     <#list 1..products.getTotalPages() as index>
                         <#if currentPage == index>
-                           <li class="page-item active">
+                           <li class="page-item active ">
                                <a class="page-link" href="#">${index}</a>
                            </li>
                         <#else>
