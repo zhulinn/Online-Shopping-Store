@@ -1,6 +1,7 @@
 package me.zhulin.onlineshopping.service.impl;
 
 import me.zhulin.onlineshopping.entity.ProductCategory;
+import me.zhulin.onlineshopping.entity.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +28,8 @@ public class CategoryServiceImplTest {
 
     @Test
     public void findOne() {
-        Optional<ProductCategory> productCategory = categoryService.findOne(1);
-        Assert.assertEquals(new Integer(0),productCategory.get().getCategoryType());
+        ProductCategory productCategory = categoryService.findByCategoryType(1);
+        Assert.assertEquals(new Integer(1),productCategory.getCategoryType());
     }
 
     @Test
@@ -48,4 +50,6 @@ public class CategoryServiceImplTest {
         ProductCategory res = categoryService.save(productCategory);
         Assert.assertNotNull(res);
     }
+
+
 }

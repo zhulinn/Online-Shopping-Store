@@ -5,7 +5,7 @@ create table `product_info` (
   `product_stock` int not null ,
   `product_description` VARCHAR(64) ,
   `product_icon` VARCHAR(512),
-  `category_type` int not null ,
+  `category_id` int not null ,
   `create_time` TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ,
   `update_time` TIMESTAMP NOT  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY key (`product_id`),

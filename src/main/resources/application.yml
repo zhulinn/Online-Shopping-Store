@@ -19,6 +19,10 @@ spring:
   redis:
     host: localhost
     port: 6379
+  freemarker:
+      cache: false
+
+
   queries:
     users-query: select user_name, encryted_password, active from accounts where user_name=?
     roles-query: select user_name, user_role from accounts where user_name=?

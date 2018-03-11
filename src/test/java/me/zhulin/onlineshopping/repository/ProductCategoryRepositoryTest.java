@@ -27,8 +27,8 @@ public class ProductCategoryRepositoryTest {
 
     @Test
     public void findOneTest() {
-        Optional<ProductCategory> productCategory = repository.findById(1);
-        System.out.println(productCategory.toString());
+        ProductCategory productCategory = repository.findByCategoryType(0);
+        System.out.println(productCategory.getCategoryType());
 
     }
 
@@ -45,7 +45,13 @@ public class ProductCategoryRepositoryTest {
     @Test
     public void findByCategoryTypeListTest() {
         List<Integer> types = Arrays.asList(0,2);
-        List<ProductCategory> result = repository.findByCategoryTypeIn(types);
+        List<ProductCategory> result = repository.findByCategoryTypeInOrderByCategoryTypeAsc(types);
         Assert.assertEquals(2,result.size());
+    }
+
+    @Test
+    public void fingByCategoryType(){
+        ProductCategory res = repository.findByCategoryType(0);
+        Assert.assertEquals(new Integer(1),res.getCategoryId());
     }
 }

@@ -2,12 +2,13 @@ package me.zhulin.onlineshopping.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created By Zhu Lin on 3/9/2018.
@@ -15,7 +16,7 @@ import java.util.Date;
 @Entity
 @Data
 @DynamicUpdate
-public class ProductCategory {
+public class ProductCategory implements Serializable{
     /** 类目id. */
     @Id
     @GeneratedValue
@@ -25,6 +26,7 @@ public class ProductCategory {
     private String categoryName;
 
     /** 类目编号. */
+    @NaturalId
     private Integer categoryType;
 
     private Date createTime;
