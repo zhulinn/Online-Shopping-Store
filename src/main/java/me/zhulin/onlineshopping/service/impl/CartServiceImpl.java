@@ -37,6 +37,13 @@ public class CartServiceImpl implements CartService {
             throw new MyException(ResultEnum.PRODUCT_OFF_SALE);
         }
 
+        // Check whether is in the cart
+        if(map.containsKey(itemForm.getProductId())){
+            // Update quantity
+            Integer old = map.get(itemForm.getProductId()).getQuantity();
+            itemForm.setQuantity(old + itemForm.getQuantity());
+        }
+
         map.put(itemForm.getProductId(), new Item(productInfo, itemForm.getQuantity()));
     }
 

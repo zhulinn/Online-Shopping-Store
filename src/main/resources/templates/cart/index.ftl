@@ -18,7 +18,7 @@
         <#list items as item>
         <tr>
             <th class="align-middle" scope="row">
-                <img height="100px" width="100px" src="${item.getProductInfo().getProductIcon()}">
+                <img height="100px" src="${item.getProductInfo().getProductIcon()}">
             </th>
             <td class="align-middle">${item.getProductInfo().getProductName()}</td>
             <td class="align-middle">${"$" + item.getProductInfo().getProductPrice()}</td>
