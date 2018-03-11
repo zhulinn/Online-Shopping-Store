@@ -9,7 +9,10 @@
             <a class="nav-item nav-link <#if category?? && category.categoryType == 1>active</#if>" href="/category/1">Food</a>
             <a class="nav-item nav-link <#if category?? && category.categoryType == 2>active</#if>" href="/category/2">Clothes</a>
             <a class="nav-item nav-link <#if category?? && category.categoryType == 3>active</#if>" href="/category/3">Drink</a>
-
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link " href="/cart">Seller? </a>
+            <a class="nav-item nav-link " href="/cart">My Cart</a>
         </div>
     </div>
 </nav>

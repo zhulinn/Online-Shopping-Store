@@ -10,7 +10,10 @@ public enum ResultEnum  {
 
     PRODUCT_NOT_EXIST(10, "Product does not exit"),
     PRODUCT_NOT_ENOUGH(11, "Not enough products in stock"),
-    PRODUCT_STATUS_ERROR(12, "Status is incorrect")
+    PRODUCT_STATUS_ERROR(12, "Status is incorrect"),
+    PRODUCT_OFF_SALE(13,"Product is off sale"),
+    PRODUCT_NOT_IN_CART(14,"Product is not in the cart")
+
 
     ;
 

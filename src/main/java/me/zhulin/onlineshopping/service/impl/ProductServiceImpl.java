@@ -22,6 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo findOne(String productId) {
+        ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
+        if (productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
         return productInfoRepository.findFirstByProductId(productId);
     }
 
@@ -42,8 +44,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void increaseStock(String productId, int amount) {
-        ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
-        if(productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
+        ProductInfo productInfo = findOne(productId);
 
         int update = productInfo.getProductStock() + amount;
         productInfo.setProductStock(update);
@@ -52,8 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void decreaseStock(String productId, int amount) {
-        ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
-        if(productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
+        ProductInfo productInfo = findOne(productId);
 
         int update = productInfo.getProductStock() - amount;
         if(update <= 0) throw new MyException(ResultEnum.PRODUCT_NOT_ENOUGH);
@@ -64,29 +64,25 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo offSale(String productId) {
-        ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
-        if(productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
-
+        ProductInfo productInfo = findOne(productId);
         if (productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()) {
             throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
 
         //更新
         productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
-        return productInfo;
+        return productInfoRepository.save(productInfo);
     }
 
     @Override
     public ProductInfo onSale(String productId) {
-        ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
-        if(productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
-
+        ProductInfo productInfo = findOne(productId);
         if (productInfo.getProductStatus() == ProductStatusEnum.UP.getCode()) {
             throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
 
         //更新
         productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
-        return productInfo;
+        return productInfoRepository.save(productInfo);
     }
 }

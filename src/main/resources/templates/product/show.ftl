@@ -7,27 +7,36 @@
     <div class="row text-center justify-content-md-center">
         <div class="col-lg-6 ">
             <div class="card mb-4 ">
-                <img height="50%" class="card-img-top" src="${productInfo.getProductIcon()}">
+                <img height="60%" class="card-img-top" src="${productInfo.getProductIcon()}">
                 <div class="card-body">
                     <h4 class="card-title ">${productInfo.getProductName()}</h4>
-                    <div class="text-left">
-                        <p class="card-test"><strong>Description: </strong>${productInfo.getProductDescription()}</p>
-                        <p class="card-text"><strong>Price: </strong>${"$"}<label
-                                id="price">${productInfo.getProductPrice()}</label></p>
-                        <p class="card-text"><strong>Stock: </strong>${productInfo.getProductStock()}</p>
+                    <form method="post" action="/cart">
+                        <div class="text-left">
+                            <p class="card-test"><strong>Description: </strong>${productInfo.getProductDescription()}
+                            </p>
+                            <p class="card-text"><strong>Price: </strong>${"$"}<label
+                                    id="price">${productInfo.getProductPrice()}</label></p>
+                            <p class="card-text"><strong>Stock: </strong>${productInfo.getProductStock()}</p>
 
-                        <label class="card-text" for="quantity">
-                            <strong>Quantity: </strong>
-                        </label><input type="number"
-                                       id="quantity"
-                                       value="1"
-                                       min="0"
-                                       max="${productInfo.getProductStock()}"
-                                       onchange="chageSubtotal()">
-                        <p class="card-text"><strong>Subtotal: </strong><label id="subtotal">${productInfo.getProductPrice()}</label></p>
-                    </div>
-                    <a class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>"
-                       href="/product/${productInfo.getProductId()}">Get It!</a>
+                            <label class="card-text" for="quantity">
+                                <strong>Quantity: </strong>
+                            </label><input type="number"
+                                           id="quantity"
+                                           value="1"
+                                           min="1"
+                                           max="${productInfo.getProductStock()}"
+                                           onchange="chageSubtotal()">
+                            <p class="card-text"><strong>Subtotal: $</strong><label
+                                    id="subtotal">${productInfo.getProductPrice()}</label></p>
+                        </div>
+
+                        <input>
+                        <button type="submit"
+                                class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>"
+                                href="/product/${productInfo.getProductId()}">Add to Cart
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>
