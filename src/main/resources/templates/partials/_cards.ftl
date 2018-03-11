@@ -7,7 +7,7 @@
                         <h4 class="card-title ">${productInfo.getProductName()}</h4>
                         <div class="text-left">
                             <p class="card-test"><strong>Description: </strong>${productInfo.getProductDescription()}</p>
-                            <p class="card-text"><strong>Price: </strong>${"$"}${productInfo.getProductPrice()}</p>
+                            <p class="card-text"><strong>Price: $</strong>${productInfo.getProductPrice()}</p>
                             <p class="card-text"><strong>Stock: </strong>${productInfo.getProductStock()}</p>
                         </div>
                         <a class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>"

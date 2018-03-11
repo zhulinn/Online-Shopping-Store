@@ -12,6 +12,7 @@
                     <h4 class="card-title ">${productInfo.getProductName()}</h4>
                     <form method="post" action="/cart">
                         <div class="text-left">
+                            <input hidden name="productId" value="${productInfo.getProductId()}">
                             <p class="card-test"><strong>Description: </strong>${productInfo.getProductDescription()}
                             </p>
                             <p class="card-text"><strong>Price: </strong>${"$"}<label
@@ -20,17 +21,17 @@
 
                             <label class="card-text" for="quantity">
                                 <strong>Quantity: </strong>
-                            </label><input type="number"
-                                           id="quantity"
-                                           value="1"
-                                           min="1"
-                                           max="${productInfo.getProductStock()}"
-                                           onchange="chageSubtotal()">
+                            </label>
+                            <input type="number"
+                                   id="quantity"
+                                   name="quantity"
+                                   value="1"
+                                   min="1"
+                                   max="${productInfo.getProductStock()}"
+                                   onchange="chageSubtotal()">
                             <p class="card-text"><strong>Subtotal: $</strong><label
                                     id="subtotal">${productInfo.getProductPrice()}</label></p>
                         </div>
-
-                        <input>
                         <button type="submit"
                                 class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>"
                                 href="/product/${productInfo.getProductId()}">Add to Cart

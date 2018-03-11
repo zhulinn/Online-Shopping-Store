@@ -29,7 +29,7 @@ public class ProductController {
     /**
      * Show All Categories
      */
-    @GetMapping({"/product","/index","/"})
+    @GetMapping({"/product","/"})
     public ModelAndView findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                 @RequestParam(value = "size", defaultValue = "3") Integer size,
                                 Map<String, Object> map){
