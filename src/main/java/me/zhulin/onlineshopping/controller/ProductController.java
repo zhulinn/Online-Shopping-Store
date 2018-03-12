@@ -43,9 +43,11 @@ public class ProductController {
 
     @GetMapping("/product/{productId}")
     public String showOne(@PathVariable("productId") String productId, Model model) {
-        ProductInfo productInfo = productService.findOne(productId);
+
+            ProductInfo productInfo = productService.findOne(productId);
+
         // Product is not available
-        if (productInfo == null || productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()) {
+        if (productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()) {
             model.addAttribute("msg", "Product is unavailable!");
             model.addAttribute("url", "/");
             return  "common/error";

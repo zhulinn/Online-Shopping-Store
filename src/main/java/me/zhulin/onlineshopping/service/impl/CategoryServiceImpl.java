@@ -2,6 +2,8 @@ package me.zhulin.onlineshopping.service.impl;
 
 import me.zhulin.onlineshopping.entity.ProductCategory;
 import me.zhulin.onlineshopping.entity.ProductInfo;
+import me.zhulin.onlineshopping.enums.ResultEnum;
+import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.repository.ProductCategoryRepository;
 import me.zhulin.onlineshopping.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ProductCategory findByCategoryType(Integer categoryType) {
-        return productCategoryRepository.findByCategoryType(categoryType);
+        ProductCategory res = productCategoryRepository.findByCategoryType(categoryType);
+        if(res == null) throw new MyException(ResultEnum.CATEGORY_NOT_FOUND);
+        return res;
     }
 
     @Override

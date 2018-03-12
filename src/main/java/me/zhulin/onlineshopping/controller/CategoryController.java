@@ -31,6 +31,7 @@ public class CategoryController {
 
     /**
      * Show products in category
+     *
      * @param categoryType
      * @param page
      * @param size
@@ -42,19 +43,14 @@ public class CategoryController {
                                 @RequestParam(value = "page", defaultValue = "1") Integer page,
                                 @RequestParam(value = "size", defaultValue = "3") Integer size,
                                 Map<String, Object> map) {
+
         ProductCategory res = categoryService.findByCategoryType(categoryType);
-        if(res != null){
-            PageRequest request =  PageRequest.of(page - 1, size);
-            Page<ProductInfo> productInCategory = productService.findAllInCategory(categoryType,request);
-            map.put("category",res);
-            map.put("products",productInCategory);
-            map.put("currentPage",page);
-            map.put("size",size);
-            return new ModelAndView("/category/show",map);
-        }else {
-            map.put("msg", "Category is not found!");
-            map.put("url", "/");
-            return new ModelAndView("common/error", map);
-        }
+        PageRequest request = PageRequest.of(page - 1, size);
+        Page<ProductInfo> productInCategory = productService.findAllInCategory(categoryType, request);
+        map.put("category", res);
+        map.put("products", productInCategory);
+        map.put("currentPage", page);
+        map.put("size", size);
+        return new ModelAndView("/category/show", map);
     }
 }

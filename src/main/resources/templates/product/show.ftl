@@ -43,11 +43,10 @@
         </div>
     </div>
 </div>
-
+</body>
 <script>
     function chageSubtotal() {
         document.getElementById("subtotal").innerHTML = parseFloat(document.getElementById("quantity").value) * parseFloat(document.getElementById("price").innerHTML);
     }
 </script>
-</body>
 </html>

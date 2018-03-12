@@ -68,6 +68,10 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void checkout() {
+        //TODO
+        // Order Detail
+        // Login Check to get user's detail
+
         for (String productId : map.keySet()) {
             productService.decreaseStock(productId, map.get(productId).getQuantity());
         }
@@ -81,7 +85,7 @@ public class CartServiceImpl implements CartService {
         for (Item item : items) {
             BigDecimal price = item.getProductInfo().getProductPrice();
             BigDecimal quantity = new BigDecimal(item.getQuantity());
-            total.add(price.multiply(quantity));
+            total = total.add(price.multiply(quantity));
         }
         return total;
     }
