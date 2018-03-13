@@ -6,7 +6,7 @@ spring:
 #    password: admin
 #    url: jdbc:mysql://localhost:3306/shop?useSSL=false
  #   schema: classpath:db/schema.sql
-    data: classpath:db/data.sql
+   # data: classpath:db/data.sql
 #    platform: mysql
   datasource:
     url: ${JDBC_DATABASE_URL}
@@ -15,15 +15,16 @@ spring:
 
   jpa:
 #    show-sql: true
+    generate-ddl: true
     hibernate:
       ddl-auto: update
-    generate-ddl: true
+
 #      dialect: org.hibernate.dialect.MySQL5Dialect
-  jackson:
-    default-property-inclusion: non_null
-  redis:
-    host: localhost
-    port: 6379
+#  jackson:
+#    default-property-inclusion: non_null
+#  redis:
+#    host: localhost
+#    port: 6379
 #  freemarker:
 #      cache: false
 
