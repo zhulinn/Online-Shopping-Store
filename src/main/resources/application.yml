@@ -12,8 +12,8 @@ spring:
     initialization-mode: always
     continue-on-error: true
   jpa:
-    show-sql: true
-    generate-ddl: false
+#    show-sql: true
+#    generate-ddl: false
     hibernate:
       ddl-auto: create
 #      dialect: org.hibernate.dialect.MySQL5Dialect

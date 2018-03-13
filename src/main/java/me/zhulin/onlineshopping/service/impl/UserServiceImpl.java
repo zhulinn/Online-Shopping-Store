@@ -6,6 +6,7 @@ import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.repository.UserRepository;
 import me.zhulin.onlineshopping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Collection;
  * Created By Zhu Lin on 3/13/2018.
  */
 @Service
+@DependsOn("passwordEncoder")
 public class UserServiceImpl implements UserService{
     @Autowired
     private PasswordEncoder passwordEncoder;

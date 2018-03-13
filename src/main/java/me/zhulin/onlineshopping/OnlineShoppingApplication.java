@@ -7,8 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,11 @@ import java.util.Map;
 public class OnlineShoppingApplication {
 	@Autowired
 	ProductService productService;
+	// Spring Boot 5.0 Requirement
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();   // 使用 BCrypt 加密
+	}
 	@RequestMapping("/")
 	public ModelAndView findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
 								@RequestParam(value = "size", defaultValue = "3") Integer size,
