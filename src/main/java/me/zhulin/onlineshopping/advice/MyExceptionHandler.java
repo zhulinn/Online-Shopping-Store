@@ -1,7 +1,6 @@
-package me.zhulin.onlineshopping.handler;
+package me.zhulin.onlineshopping.advice;
 
 import me.zhulin.onlineshopping.exception.MyException;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,11 +16,12 @@ public class MyExceptionHandler {
         model.addAttribute("msg", ex.getMessage());
         return "/common/error";
     }
-    @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception ex, Model model){
-        model.addAttribute("msg", "Unknown Error!");
-        return "/common/error";
-    }
+
+//    @ExceptionHandler(Exception.class)
+//    public String errorHandler(Exception ex, Model model){
+//        model.addAttribute("msg", "Unknown Error!");
+//        return "/common/error";
+//    }
 
 
 }

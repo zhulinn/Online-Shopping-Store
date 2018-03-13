@@ -1,6 +1,6 @@
     <div class="row card-deck text-center">
         <#list products.content as productInfo>
-            <div class="col-lg-4 col-md-6 col-sm-12 ">
+            <div class="col-lg-4 ">
                 <div class="card mb-4 ">
                     <img height="50%" class="card-img-top" src="${productInfo.getProductIcon()}">
                     <div class="card-body">

@@ -13,11 +13,11 @@ public class MyErrorController implements ErrorController{
 
     private final static String ERROR_PATH = "/error";
 
-    @GetMapping(ERROR_PATH)
-    public String error(Model model) {
-        model.addAttribute("msg", "Unknown Error!");
-        return "/common/error";
-    }
+//    @GetMapping(ERROR_PATH)
+//    public String error(Model model) {
+//        model.addAttribute("msg", "Unknown Error!");
+//        return "/common/error";
+//    }
 
     @Override
     public String getErrorPath() {

@@ -5,11 +5,12 @@ create table `product_info` (
   `product_stock` int not null ,
   `product_description` VARCHAR(64) ,
   `product_icon` VARCHAR(512),
-  `category_id` int not null ,
+  `category_type` int not null ,
+  `product_status` TINYINT(3) NOT NULL DEFAULT '0',
   `create_time` TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ,
   `update_time` TIMESTAMP NOT  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY key (`product_id`),
-               FOREIGN KEY (category_type) REFERENCES order_master(category_type)
+  FOREIGN KEY (category_type) REFERENCES order_master(category_type)
 );
 
 CREATE TABLE `product_category`(
@@ -50,6 +51,18 @@ CREATE TABLE `order_detail` (
   `update_time` TIMESTAMP NOT  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 primary key (`detail_id`),
 FOREIGN KEY (`product_id`) REFERENCES product_info(product_id),
-  FOREIGN KEY (order_id) REFERENCES order_master(order_id),
+FOREIGN KEY (order_id) REFERENCES order_master(order_id),
 key `idx_order_id` (`order_id`)
+);
+
+CREATE TABLE users (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  email VARCHAR(32) NOT NULL UNIQUE KEY ,
+  password VARCHAR(64) NOT NULL,
+  name VARCHAR(32) NOT NULL ,
+  phone VARCHAR (32) not  null,
+  address VARCHAR (128) NOT  NULL,
+  active BIT NOT NULL DEFAULT 1 COMMENT 'default 1 active',
+  roles VARCHAR(16) NOT NULL
+
 );

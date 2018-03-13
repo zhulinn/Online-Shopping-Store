@@ -6,6 +6,7 @@ import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.form.ItemForm;
 import me.zhulin.onlineshopping.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +42,7 @@ public class CartController {
             throw new MyException(ResultEnum.PARAM_ERROR.getCode(),bindingResult.getFieldError().getDefaultMessage());
         }
         cartService.addItem(itemForm);
-        return "redirect:" + "/product";
+        return "redirect:" + "/cart";
     }
 
     @GetMapping("/checkout")
@@ -56,6 +57,12 @@ public class CartController {
     @GetMapping("/remove")
     public String remove(@RequestParam("product_id") String productId) {
         cartService.removeItem(productId);
+        return "redirect:" + "/cart";
+    }
+
+    @GetMapping("/change")
+    public String plus(@RequestParam("product_id") String poductId, @RequestParam("quantity") Integer quantity) {
+        cartService.updateQuantity(poductId, quantity);
         return "redirect:" + "/cart";
     }
 

@@ -23,6 +23,8 @@ spring:
       cache: false
 
 
+
+
   queries:
-    users-query: select user_name, encryted_password, active from accounts where user_name=?
-    roles-query: select user_name, user_role from accounts where user_name=?
+    users-query: select email, password, active from users where email=?
+    roles-query: select email, role from users where email=?

@@ -15,7 +15,7 @@ import java.util.List;
 public interface CartService {
     void addItem(ItemForm itemForm);
     void removeItem(String productId);
-    void updateQuantity(ItemForm itemForm);
+    void updateQuantity(String productId, Integer quantity);
 
     Collection<Item> findAll();
 

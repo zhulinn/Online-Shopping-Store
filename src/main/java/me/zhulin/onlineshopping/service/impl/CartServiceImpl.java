@@ -54,10 +54,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void updateQuantity(ItemForm itemForm) {
-        String productId = itemForm.getProductId();
+    public void updateQuantity(String productId, Integer quantity) {
         if (!map.containsKey(productId)) throw new MyException(ResultEnum.PRODUCT_NOT_IN_CART);
-        map.get(productId).setQuantity(itemForm.getQuantity());
+        Item item = map.get(productId);
+        Integer max = item.getProductInfo().getProductStock();
+        if(quantity > 0) {
+            item.setQuantity(quantity > max ? max : quantity);
+        }
     }
 
     @Override

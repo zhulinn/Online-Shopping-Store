@@ -25,4 +25,8 @@ public enum ProductStatusEnum implements CodeEnum{
         }
         return "";
     }
+
+    public Integer getCode() {
+        return code;
+    }
 }

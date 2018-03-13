@@ -16,7 +16,9 @@ public enum ResultEnum  {
     PRODUCT_NOT_IN_CART(14,"Product is not in the cart!"),
     CART_CHECKOUT_SUCCESS(20, "Checkout successfully! "),
 
-    CATEGORY_NOT_FOUND(30, "Category does not exit!")
+    CATEGORY_NOT_FOUND(30, "Category does not exit!"),
+
+    USER_NOT_FOUNT(40,"User is not found!")
     ;
 
     private Integer code;

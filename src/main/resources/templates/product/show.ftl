@@ -4,7 +4,7 @@
 <div class="container  ">
     <#include "../partials/_nav.ftl">
     <h1 align="center" class="display-4 mb-5">Product Detail</h1>
-    <div class="row text-center justify-content-md-center">
+    <div class="row text-center justify-content-center">
         <div class="col-lg-6 ">
             <div class="card mb-4 ">
                 <img height="60%" class="card-img-top" src="${productInfo.getProductIcon()}">
@@ -28,7 +28,7 @@
                                    value="1"
                                    min="1"
                                    max="${productInfo.getProductStock()}"
-                                   onchange="chageSubtotal()">
+                                   oninput="chageSubtotal()">
                             <p class="card-text"><strong>Subtotal: $</strong><label
                                     id="subtotal">${productInfo.getProductPrice()}</label></p>
                         </div>
