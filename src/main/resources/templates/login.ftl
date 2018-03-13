@@ -5,16 +5,16 @@
     <#include "partials/_nav.ftl">
     <h1 align="center" class="display-4 mb-5">Sign In</h1>
     <div style="width:40%; margin: 25px auto" >
-        <#--<#if (param.error)??>-->
-            <#--<div class="alert alert-danger">-->
-                <#--Invalid username and password.-->
-            <#--</div>-->
-        <#--</#if>-->
-        <#--<#if (param.logout)??>-->
-        <#--<div class="alert alert-info">-->
-            <#--You have been logged out.-->
-        <#--</div>-->
-        <#--</#if>-->
+        <#if (RequestParameters.error)??>
+            <div class="alert alert-danger">
+                Invalid username and password.
+            </div>
+        </#if>
+        <#if (RequestParameters.logout)??>
+        <div class="alert alert-info">
+            You have been logged out.
+        </div>
+        </#if>
 
         <form action="/login" method="post">
             <div class="form-group">

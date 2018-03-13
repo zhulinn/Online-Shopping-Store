@@ -32,7 +32,7 @@
                 <a class="nav-item nav-link " href="/login">
                     ${currentUser.name}
                 </a>
-                <a class="nav-item nav-link " href="/logout">
+                <a class="nav-item nav-link " href="/login?logout">
                     Sign Out
                 </a>
             <#else>
