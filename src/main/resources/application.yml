@@ -5,16 +5,17 @@ spring:
 #    username: admin
 #    password: admin
 #    url: jdbc:mysql://localhost:3306/test?useSSL=false
+#    platform: mysql
 #    schema: classpath:mysql.sql
 #    data: classpath:mysql.sql
-   # platform: mysql
+
     initialization-mode: always
     continue-on-error: true
   jpa:
     show-sql: true
     generate-ddl: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
 #      dialect: org.hibernate.dialect.MySQL5Dialect
 
 #  jackson:
