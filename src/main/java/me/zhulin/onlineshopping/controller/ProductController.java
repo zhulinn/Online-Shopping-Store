@@ -31,7 +31,7 @@ public class ProductController {
     /**
      * Show All Categories
      */
-    @GetMapping({"/product","/"})
+    @GetMapping("/")
     public ModelAndView findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                 @RequestParam(value = "size", defaultValue = "3") Integer size,
                                 Map<String, Object> map){
@@ -41,6 +41,11 @@ public class ProductController {
         map.put("currentPage",page);
         map.put("size",size);
         return new ModelAndView("/product/index",map);
+    }
+
+    @GetMapping("/product")
+    public String product() {
+        return "forward:" + "/";
     }
 
     @GetMapping("/product/{productId}")
