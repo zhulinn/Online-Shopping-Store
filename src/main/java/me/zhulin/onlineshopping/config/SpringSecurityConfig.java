@@ -26,8 +26,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("dataSource")
     DataSource dataSource;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;
@@ -49,7 +47,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder);
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -73,7 +71,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .failureUrl("/login-error")//
                 .usernameParameter("email")//
                 .passwordParameter("password")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
                 .and()
                 .rememberMe().key(MD5KEY)
                 .and()

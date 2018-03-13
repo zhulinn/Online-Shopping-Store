@@ -18,6 +18,7 @@ public enum ResultEnum  {
 
     CATEGORY_NOT_FOUND(30, "Category does not exit!"),
 
+    VALID_ERROR(50, "Wrong information"),
     USER_NOT_FOUNT(40,"User is not found!")
     ;
 

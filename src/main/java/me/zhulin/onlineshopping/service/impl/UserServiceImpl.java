@@ -1,6 +1,7 @@
 package me.zhulin.onlineshopping.service.impl;
 
 import me.zhulin.onlineshopping.entity.User;
+import me.zhulin.onlineshopping.enums.ResultEnum;
 import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.repository.UserRepository;
 import me.zhulin.onlineshopping.service.UserService;
@@ -32,7 +33,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new MyException(ResultEnum.VALID_ERROR);
+        }
     }
 
 }
