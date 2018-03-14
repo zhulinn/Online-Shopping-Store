@@ -33,7 +33,7 @@ public class User  implements Serializable {
     @NotEmpty
     private String email;
     @NotEmpty
-    @Size(min=3, max = 64)
+    @Size(min=3, message = "Length must be more than 3")
     private String password;
     @NotEmpty
     private String name;

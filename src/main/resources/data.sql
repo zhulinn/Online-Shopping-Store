@@ -19,7 +19,7 @@ INSERT INTO product_info(product_id, product_name, product_price, product_stock,
 INSERT INTO product_info(product_id, product_name, product_price, product_stock, product_description, product_icon, category_type, product_status, create_time, update_time) VALUES ('F0002', 'McDonald‘s Food', 20.00, 23, 'Family s', 'http://cdn1.thecomeback.com/wp-content/uploads/2017/05/mcdonalds_food-832x447.png', 1, 0, '2018-03-10 12:16:44', '2018-03-10 12:16:44');
 
 
-INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (1, 'customer1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'customer1', '123456789', '3200 West Road', b'1', 'ROLE_CUSTOMER');
-INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (2, 'manager1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'manager1', '987654321', '2000 John Road', b'1', 'ROLE_MANAGER');
-INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (3, 'employee1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'employee1', '123123122', '222 East Drive ', b'1', 'ROLE_EMPLOYEE');
+INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (1, 'customer1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'customer1', '123456789', '3200 West Road', 1, 'ROLE_CUSTOMER');
+INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (2, 'manager1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'manager1', '987654321', '2000 John Road', 1, 'ROLE_MANAGER');
+INSERT INTO users(id, email, password, name, phone, address, active, role) VALUES (3, 'employee1@email.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'employee1', '123123122', '222 East Drive ', 1, 'ROLE_EMPLOYEE');
 

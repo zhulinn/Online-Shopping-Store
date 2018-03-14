@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/product">
+    <a class="navbar-brand" href="/">
         <img src="/images/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">
         E-Shop
     </a>
@@ -29,7 +29,7 @@
                 My Cart
             </a>
             <#if currentUser?? >
-                <a class="nav-item nav-link " href="/login">
+                <a class="nav-item nav-link " href="/profiles">
                     ${currentUser.name}
                 </a>
                 <a class="nav-item nav-link " href="/logout">

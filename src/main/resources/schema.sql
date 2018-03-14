@@ -57,13 +57,15 @@ key idx_order_id (order_id)
 );
 
 CREATE TABLE users (
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-  email VARCHAR(32) NOT NULL UNIQUE ,
+  id int NOT NULL AUTO_INCREMENT  ,
+  email VARCHAR(32) NOT NULL UNIQUE  ,
   password VARCHAR(64) NOT NULL,
   name VARCHAR(32) NOT NULL ,
   phone VARCHAR (32) not  null,
   address VARCHAR (128) NOT  NULL,
   active BIT NOT NULL DEFAULT 1 COMMENT 'default 1 active',
-  role VARCHAR(16) NOT NULL
+  role VARCHAR(16) NOT NULL,
+    primary key (id),
+  UNIQUE KEY uniq_email (email)
 
 );
