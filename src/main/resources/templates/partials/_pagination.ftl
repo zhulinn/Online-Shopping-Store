@@ -15,7 +15,7 @@
                            <li class="page-item active ">
                                <a class="page-link" href="#">${index}</a>
                            </li>
-                        <#else>
+                        <#elseif index != 0>
                             <li class="page-item">
                                 <a class="page-link" href="?page=${index}&size=${size}">${index}</a>
                             </li>

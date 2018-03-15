@@ -2,7 +2,7 @@ package me.zhulin.onlineshopping.controller;
 
 import me.zhulin.onlineshopping.entity.User;
 import me.zhulin.onlineshopping.exception.MyException;
-import me.zhulin.onlineshopping.form.UserForm;
+import me.zhulin.onlineshopping.repository.UserRepository;
 import me.zhulin.onlineshopping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -27,6 +26,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping("/login")
@@ -64,7 +65,7 @@ public class UserController {
     }
 
     @PostMapping("/profiles")
-    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal){
+    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal, Model model){
         // 使用BindingResult来验证表单数据的正确性
         if (bindingResult.hasErrors()) {
             // 将提交的表单内容原封不动的返回到页面再展示出来
@@ -72,11 +73,13 @@ public class UserController {
             return "/user/show";
         }
         //Access deny
-        if(!principal.getName().equals(user.getName())) {
+        if(!principal.getName().equals(user.getEmail())) {
             return "redirect:" + "/403";
         }
-        userService.save(user);
-        return "/user/show";
+        userService.update(user);
+        model.addAttribute("msg", "Profils is updated!");
+        model.addAttribute("url", "/profiles");
+        return  "common/success";
     }
     @GetMapping("/403")
     public String accessDeney(Model model) {

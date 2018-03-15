@@ -18,6 +18,10 @@ public enum ResultEnum  {
 
     CATEGORY_NOT_FOUND(30, "Category does not exit!"),
 
+    ORDER_NOT_FOUND(60, "OrderMain is not exit!"),
+    ORDER_STATUS_ERROR(61, "Status is not correct"),
+
+
     VALID_ERROR(50, "Wrong information"),
     USER_NOT_FOUNT(40,"User is not found!")
     ;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created By Zhu Lin on 3/10/2018.
@@ -24,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductInfo findOne(String productId) {
         ProductInfo productInfo = productInfoRepository.findFirstByProductId(productId);
         if (productInfo == null) throw new MyException(ResultEnum.PRODUCT_NOT_EXIST);
-        return productInfoRepository.findFirstByProductId(productId);
+        return productInfo;
     }
 
     @Override
@@ -43,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void increaseStock(String productId, int amount) {
         ProductInfo productInfo = findOne(productId);
 
@@ -52,17 +54,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void decreaseStock(String productId, int amount) {
         ProductInfo productInfo = findOne(productId);
 
         int update = productInfo.getProductStock() - amount;
-        if(update <= 0) throw new MyException(ResultEnum.PRODUCT_NOT_ENOUGH);
+        if(update <= 0) throw new MyException(ResultEnum.PRODUCT_NOT_ENOUGH );
 
         productInfo.setProductStock(update);
         productInfoRepository.save(productInfo);
     }
 
     @Override
+    @Transactional
     public ProductInfo offSale(String productId) {
         ProductInfo productInfo = findOne(productId);
         if (productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()) {
@@ -75,6 +79,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductInfo onSale(String productId) {
         ProductInfo productInfo = findOne(productId);
         if (productInfo.getProductStatus() == ProductStatusEnum.UP.getCode()) {

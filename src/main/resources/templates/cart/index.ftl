@@ -25,7 +25,7 @@
                 <img height="100px" src="${item.getProductInfo().getProductIcon()}">
             </th>
             <td class="align-middle">${item.getProductInfo().getProductName()}</td>
-            <td class="align-middle">${"$" + item.getProductInfo().getProductPrice()}</td>
+            <td class="align-middle">${item.getProductInfo().getProductPrice()?string.currency}</td>
             <td class="align-middle">
                 <a href="/cart/change?product_id=${item.getProductInfo().getProductId()}&quantity=${item.getQuantity()-1}"><i
                         class="fas fa-minus"></i></a>
@@ -35,7 +35,7 @@
                 <a href="/cart/change?product_id=${item.getProductInfo().getProductId()}&quantity=${item.getQuantity()+1}">
                     <i class="fas fa-plus"></i></a>
             </td>
-            <td class="align-middle">${"$" + item.getProductInfo().getProductPrice() * item.getQuantity()}</td>
+            <td class="align-middle">${(item.getProductInfo().getProductPrice() * item.getQuantity())?string.currency}</td>
             <td class="align-middle">
                 <a href="/cart/remove?product_id=${item.getProductInfo().getProductId()}">Remove</a>
             </td>
@@ -48,7 +48,7 @@
 <#--Check Out -->
     <#if items?has_content >
         <div>
-            <h5 style="display: inline;">Total: $${total}</h5>
+            <h5 style="display: inline;">Total: ${total?string.currency}</h5>
             <a class="btn btn-warning float-right" href="/cart/checkout">Checkout</a>
         </div>
     <#else>
@@ -58,9 +58,10 @@
         </div>
     </#if>
 
-    <p id="demo"></p>
+
 
 </div>
+<#include "../partials/_footer.ftl">
 </body>
 <script>
     var timeout = null;

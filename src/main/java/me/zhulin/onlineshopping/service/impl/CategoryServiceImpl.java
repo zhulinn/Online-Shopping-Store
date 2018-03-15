@@ -8,6 +8,7 @@ import me.zhulin.onlineshopping.repository.ProductCategoryRepository;
 import me.zhulin.onlineshopping.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -46,6 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public ProductCategory save(ProductCategory productCategory) {
         return productCategoryRepository.save(productCategory);
     }

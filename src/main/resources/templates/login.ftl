@@ -64,6 +64,7 @@
 
 </div>
 </body>
+<#include "partials/_footer.ftl">
 <script>
     function fillLoginFields(u, p) {
         document.getElementById("email").value = u;

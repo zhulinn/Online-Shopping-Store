@@ -25,10 +25,15 @@
 
         <div class="navbar-nav ml-auto">
 
-            <a class="nav-item nav-link " href="/cart"><i class="fa fa-shopping-cart"></i>
-                My Cart
+            <a class="nav-item nav-link " href="/cart">
+                <i class="fa fa-shopping-cart"></i>
+                Cart
             </a>
             <#if currentUser?? >
+                <a class="nav-item nav-link " href="/order">
+                    <i class="fa fa-list-ul"></i>
+                    Orders
+                </a>
                 <a class="nav-item nav-link " href="/profiles">
                     ${currentUser.name}
                 </a>
@@ -46,3 +51,6 @@
         </div>
     </div>
 </nav>
+
+<#--set all integer without comma-->
+<#setting number_format="computer">

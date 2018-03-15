@@ -24,38 +24,6 @@ create table product_info (
   FOREIGN KEY (category_type) REFERENCES product_category(category_type)
 );
 
-
-CREATE TABLE order_master (
-order_id VARCHAR (32) NOT  NULL ,
-buyer_name VARCHAR (32) not NULL ,
-buyer_phone VARCHAR (32) not  null,
-buyer_address VARCHAR (128) NOT  NULL,
-buyer_email VARCHAR (32) not null,
-order_amount DECIMAL (8,2) not NULL ,
-order_status tinyint(3) not null DEFAULT '0' ,
-pay_status tinyint(3) not null DEFAULT '0' ,
-  create_time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ,
-  update_time TIMESTAMP NOT  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-primary key (order_id),
-KEY idx_buyer_email (buyer_email)
-);
-
-CREATE TABLE order_detail (
-detail_id VARCHAR (32) NOT NULL ,
-order_id VARCHAR (32) NOT NULL,
-  product_id varchar(32) not null,
-  product_name VARCHAR(64) not null,
-  product_price DECIMAL (8, 2) not NULL ,
-  product_quantity int not null ,
-  product_description VARCHAR (64) ,
-  product_icon VARCHAR (512),
-    create_time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ,
-  update_time TIMESTAMP NOT  NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-primary key (detail_id),
-FOREIGN KEY (order_id) REFERENCES order_master(order_id),
-key idx_order_id (order_id)
-);
-
 CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT  ,
   email VARCHAR(32) NOT NULL UNIQUE  ,
@@ -67,5 +35,31 @@ CREATE TABLE users (
   role VARCHAR(16) NOT NULL,
     primary key (id),
   UNIQUE KEY uniq_email (email)
+);
 
+CREATE TABLE `order_main`  (
+  `order_id` bigint(20) NOT NULL,
+  `buyer_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `buyer_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `buyer_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `buyer_phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NOT NULL,
+  `order_amount` decimal(19, 2) NOT NULL,
+  `order_status` int(11) NULL DEFAULT NULL,
+  `update_time` datetime(0) NOT NULL,
+  PRIMARY KEY (`order_id`) USING BTREE
+);
+
+CREATE TABLE `product_in_order`  (
+  `id` bigint(20) NOT NULL,
+  `category_type` int(11) NOT NULL,
+  `product_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `product_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `product_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `product_price` decimal(19, 2) NOT NULL,
+  `product_quantity` int(11) NULL DEFAULT NULL,
+  `order_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKt0sfj3ffasrift1c4lv3ra85e`(`order_id`) USING BTREE
 );

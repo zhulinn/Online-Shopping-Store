@@ -17,6 +17,7 @@ import java.util.Date;
 @DynamicUpdate
 public class ProductInfo implements Serializable{
     @Id
+    @GeneratedValue
     private String productId;
 
     /** 名字. */

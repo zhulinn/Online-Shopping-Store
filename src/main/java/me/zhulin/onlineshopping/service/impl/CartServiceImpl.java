@@ -1,16 +1,22 @@
 package me.zhulin.onlineshopping.service.impl;
 
+import me.zhulin.onlineshopping.advice.CurrentUserControllerAdvice;
 import me.zhulin.onlineshopping.dto.Item;
+import me.zhulin.onlineshopping.entity.OrderMain;
+import me.zhulin.onlineshopping.entity.ProductInOrder;
 import me.zhulin.onlineshopping.entity.ProductInfo;
+import me.zhulin.onlineshopping.entity.User;
 import me.zhulin.onlineshopping.enums.ProductStatusEnum;
 import me.zhulin.onlineshopping.enums.ResultEnum;
 import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.form.ItemForm;
+import me.zhulin.onlineshopping.repository.OrderRepository;
 import me.zhulin.onlineshopping.service.CartService;
 import me.zhulin.onlineshopping.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
@@ -26,6 +32,8 @@ import java.util.*;
 public class CartServiceImpl implements CartService {
     @Autowired
     ProductService productService;
+    @Autowired
+    OrderRepository orderRepository;
 
     private Map<String, Item> map = new LinkedHashMap<>();
 
@@ -70,14 +78,17 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public void checkout() {
-        //TODO
-        // Order Detail
-        // Login Check to get user's detail
-
+    public void checkout(User user) {
+        OrderMain orderMain = new OrderMain(user);
         for (String productId : map.keySet()) {
-            productService.decreaseStock(productId, map.get(productId).getQuantity());
+            Item item = map.get(productId);
+            ProductInOrder productInOrder = new ProductInOrder(item.getProductInfo(), item.getQuantity());
+            productInOrder.setOrderMain(orderMain);
+            orderMain.getProducts().add(productInOrder);
+            productService.decreaseStock(productId, item.getQuantity());
         }
+        orderMain.setOrderAmount(getTotal());
+        orderRepository.save(orderMain);
         map.clear();
     }
 

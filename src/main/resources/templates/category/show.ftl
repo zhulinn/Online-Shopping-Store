@@ -7,6 +7,7 @@
     <#include "../partials/_cards.ftl">
     <#include "../partials/_pagination.ftl">
 </div>
+<#include "../partials/_footer.ftl">
 </body>
 </html>
 

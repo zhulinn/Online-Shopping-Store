@@ -48,5 +48,6 @@
         </form>
     </div>
 </div>
+<#include "partials/_footer.ftl">
 </body>
 </html>

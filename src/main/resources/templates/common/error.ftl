@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+<#include "../partials/_footer.ftl">
 </body>
 <script>
     setTimeout('location.href="${url!"/"}"', 3000);

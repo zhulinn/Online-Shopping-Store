@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {
@@ -40,6 +42,16 @@ public class UserServiceImpl implements UserService{
         } catch (Exception e) {
             throw new MyException(ResultEnum.VALID_ERROR);
         }
+    }
+
+    @Override
+    public void update(User user) {
+        User oldUser = userRepository.findByEmail(user.getEmail());
+        oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        oldUser.setName(user.getName());
+        oldUser.setPhone(user.getPhone());
+        oldUser.setAddress(user.getAddress());
+        userRepository.save(oldUser);
     }
 
 }

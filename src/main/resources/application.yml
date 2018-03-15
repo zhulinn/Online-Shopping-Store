@@ -1,18 +1,18 @@
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: admin
-    password: admin
-    url: jdbc:mysql://localhost:3306/test?useSSL=false
-    platform: mysql
-    initialization-mode: always
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: admin
+#    password: admin
+#    url: jdbc:mysql://localhost:3306/test?useSSL=false
+#    platform: mysql
+  #  initialization-mode: always
     continue-on-error: true
   jpa:
     show-sql: false
 #    generate-ddl: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 #      dialect: org.hibernate.dialect.MySQL5Dialect
 
 #  jackson:

@@ -1,6 +1,6 @@
 package me.zhulin.onlineshopping.service;
 
-import me.zhulin.onlineshopping.entity.Order;
+import me.zhulin.onlineshopping.entity.OrderMain;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,18 +10,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface OrderService {
-    Page<Order> findAll(Pageable pageable);
+    Page<OrderMain> findAll(Pageable pageable);
 
-    Page<Order> findByStatus(Integer status, Pageable pageable);
+    Page<OrderMain> findByStatus(Integer status, Pageable pageable);
 
-    Page<Order> findByBuyerEmail(String email, Pageable pageable);
+    Page<OrderMain> findByBuyerEmail(String email, Pageable pageable);
 
-    Page<Order> findByBuyerPhone(String phone, Pageable pageable);
+    Page<OrderMain> findByBuyerPhone(String phone, Pageable pageable);
 
-    Order findOne(Integer orderId);
+    OrderMain findOne(Long orderId);
 
-    void finish(Integer orderId);
 
-    void  cancel(Integer orderId);
+
+    void finish(Long orderId);
+
+    void  cancel(Long orderId);
 
 }

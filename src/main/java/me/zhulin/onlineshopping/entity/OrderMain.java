@@ -2,30 +2,40 @@ package me.zhulin.onlineshopping.entity;
 
 import lombok.Data;
 import me.zhulin.onlineshopping.enums.OrderStatusEnum;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Order contains User info and products in the order
+ * OrderMain contains User info and products in the order
  * Created By Zhu Lin on 3/14/2018.
  */
 @Entity
 @Data
-@DynamicUpdate
-public class Order implements Serializable{
+
+public class OrderMain implements Serializable{
     private static final long serialVersionUID = -3819883511505235030L;
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "orderMain")
+    private Set<ProductInOrder> products = new HashSet<>();
 
     @NotEmpty
     private String buyerEmail;
@@ -39,20 +49,30 @@ public class Order implements Serializable{
     @NotEmpty
     private String buyerAddress;
 
+    // Total Amount
     @NotNull
     private BigDecimal orderAmount;
 
     /** 订单状态, 默认为0新下单. */
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
-
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime;
+    @ColumnDefault("0")
+    private Integer orderStatus;
 
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime;
+    @CreationTimestamp
+    private LocalDateTime createTime;
 
-    public Order() {
+    @UpdateTimestamp
+    private LocalDateTime updateTime;
+
+    public OrderMain(){
+
+    }
+
+    public OrderMain(User buyer) {
+        this.buyerEmail = buyer.getEmail();
+        this.buyerName = buyer.getName();
+        this.buyerPhone = buyer.getPhone();
+        this.buyerAddress = buyer.getAddress();
+        this.orderStatus = 0;
     }
 }
