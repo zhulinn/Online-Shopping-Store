@@ -38,22 +38,22 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OrderMain> findAll(Pageable pageable) {
-        return orderRepository.findAll(pageable);
+        return orderRepository.findAllOrderByOrderStatusAscCreateTimeAsc(pageable);
     }
 
     @Override
     public Page<OrderMain> findByStatus(Integer status, Pageable pageable) {
-        return orderRepository.findAllByOrderStatus(status, pageable);
+        return orderRepository.findAllByOrderStatusOrderByCreateTimeAsc(status, pageable);
     }
 
     @Override
     public Page<OrderMain> findByBuyerEmail(String email, Pageable pageable) {
-        return orderRepository.findAllByBuyerEmail(email, pageable);
+        return orderRepository.findAllByBuyerEmailOrderByOrderStatusAscCreateTimeAsc(email, pageable);
     }
 
     @Override
     public Page<OrderMain> findByBuyerPhone(String phone, Pageable pageable) {
-        return orderRepository.findAllByBuyerPhone(phone, pageable);
+        return orderRepository.findAllByBuyerPhoneOrderByOrderStatusAscCreateTimeAsc(phone, pageable);
     }
 
     @Override

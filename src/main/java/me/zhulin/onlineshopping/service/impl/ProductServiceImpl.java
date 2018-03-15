@@ -30,17 +30,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductInfo> findUpAll(Pageable pageable) {
-        return productInfoRepository.findAllByProductStatus(ProductStatusEnum.UP.getCode(),pageable);
+        return productInfoRepository.findAllByProductStatusOrderByProductIdAsc(ProductStatusEnum.UP.getCode(),pageable);
     }
 
     @Override
     public Page<ProductInfo> findAll(Pageable pageable) {
-        return productInfoRepository.findAll(pageable);
+        return productInfoRepository.findAllOrderByProductIdAsc(pageable);
     }
 
     @Override
     public Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable) {
-        return productInfoRepository.findAllByCategoryType(categoryType, pageable);
+        return productInfoRepository.findAllByCategoryTypeOrderByProductIdAsc(categoryType, pageable);
     }
 
     @Override

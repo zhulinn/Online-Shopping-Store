@@ -11,9 +11,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface OrderRepository extends JpaRepository<OrderMain, Integer>{
     OrderMain findByOrderId(Long orderId);
 
-    Page<OrderMain> findAllByOrderStatus(Integer orderStatus, Pageable pageable);
 
-    Page<OrderMain> findAllByBuyerEmail(String buyerEmail, Pageable pageable);
+    Page<OrderMain> findAllByOrderStatusOrderByCreateTimeAsc(Integer orderStatus, Pageable pageable);
 
-    Page<OrderMain> findAllByBuyerPhone(String buyerPhone, Pageable pageable);
+
+    Page<OrderMain> findAllByBuyerEmailOrderByOrderStatusAscCreateTimeAsc(String buyerEmail, Pageable pageable);
+
+    Page<OrderMain> findAllOrderByOrderStatusAscCreateTimeAsc( Pageable pageable);
+
+    Page<OrderMain> findAllByBuyerPhoneOrderByOrderStatusAscCreateTimeAsc(String buyerPhone, Pageable pageable);
 }

@@ -1,18 +1,19 @@
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    username: admin
-#    password: admin
-#    url: jdbc:mysql://localhost:3306/test?useSSL=false
-#    platform: mysql
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost/postgres
+    platform: postgres
   #  initialization-mode: always
-    continue-on-error: true
+  #  continue-on-error: true
   jpa:
     show-sql: false
 #    generate-ddl: false
     hibernate:
       ddl-auto: create
+    database: postgresql
 #      dialect: org.hibernate.dialect.MySQL5Dialect
 
 #  jackson:
