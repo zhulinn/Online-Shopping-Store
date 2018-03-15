@@ -17,15 +17,6 @@
 
 
 -- ----------------------------
--- Table structure for hibernate_sequence
--- ----------------------------
-DROP TABLE IF EXISTS "public"."hibernate_sequence";
-CREATE TABLE "public"."hibernate_sequence" (
-  "next_val" int8
-)
-;
-
--- ----------------------------
 -- Records of hibernate_sequence
 -- ----------------------------
 INSERT INTO "public"."hibernate_sequence" VALUES (3);
@@ -34,22 +25,6 @@ INSERT INTO "public"."hibernate_sequence" VALUES (3);
 INSERT INTO "public"."hibernate_sequence" VALUES (3);
 INSERT INTO "public"."hibernate_sequence" VALUES (3);
 
--- ----------------------------
--- Table structure for order_main
--- ----------------------------
-DROP TABLE IF EXISTS "public"."order_main";
-CREATE TABLE "public"."order_main" (
-  "order_id" int8 NOT NULL,
-  "buyer_address" varchar(255) COLLATE "pg_catalog"."default",
-  "buyer_email" varchar(255) COLLATE "pg_catalog"."default",
-  "buyer_name" varchar(255) COLLATE "pg_catalog"."default",
-  "buyer_phone" varchar(255) COLLATE "pg_catalog"."default",
-  "create_time" timestamp(6),
-  "order_amount" numeric(19,2) NOT NULL,
-  "order_status" int4 NOT NULL DEFAULT 0,
-  "update_time" timestamp(6)
-)
-;
 
 -- ----------------------------
 -- Records of order_main
@@ -60,18 +35,6 @@ INSERT INTO "public"."order_main" VALUES (2147483646, '2346dfgadga', 'customer2@
 INSERT INTO "public"."order_main" VALUES (2147483648, '2346dfgadga', 'customer2@email.com', 'customer2', '2343456', '2018-03-15 07:04:15', 64.00, 0, '2018-03-15 07:04:15');
 INSERT INTO "public"."order_main" VALUES (1, '222 East Drive ', 'employee1@email.com', 'employee1', '123123122', '2018-03-15 09:22:45', 13.00, 0, '2018-03-15 09:22:45');
 
--- ----------------------------
--- Table structure for product_category
--- ----------------------------
-DROP TABLE IF EXISTS "public"."product_category";
-CREATE TABLE "public"."product_category" (
-  "category_id" int4 NOT NULL,
-  "category_name" varchar(255) COLLATE "pg_catalog"."default",
-  "category_type" int4,
-  "create_time" timestamp(6),
-  "update_time" timestamp(6)
-)
-;
 
 -- ----------------------------
 -- Records of product_category
@@ -81,22 +44,6 @@ INSERT INTO "public"."product_category" VALUES (2147483642, 'Clothes', 2, '2018-
 INSERT INTO "public"."product_category" VALUES (2147483644, 'Drink', 3, '2018-03-10 01:01:09', '2018-03-10 01:01:09');
 INSERT INTO "public"."product_category" VALUES (2147483645, 'Food', 1, '2018-03-10 00:26:05', '2018-03-10 00:26:05');
 
--- ----------------------------
--- Table structure for product_in_order
--- ----------------------------
-DROP TABLE IF EXISTS "public"."product_in_order";
-CREATE TABLE "public"."product_in_order" (
-  "id" int8 NOT NULL,
-  "category_type" int4 NOT NULL,
-  "product_description" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "product_icon" varchar(255) COLLATE "pg_catalog"."default",
-  "product_id" varchar(255) COLLATE "pg_catalog"."default",
-  "product_name" varchar(255) COLLATE "pg_catalog"."default",
-  "product_price" numeric(19,2) NOT NULL,
-  "product_quantity" int4,
-  "order_id" int8 NOT NULL
-)
-;
 
 -- ----------------------------
 -- Records of product_in_order
@@ -109,23 +56,6 @@ INSERT INTO "public"."product_in_order" VALUES (2147483641, 3, 'Awesome', 'https
 INSERT INTO "public"."product_in_order" VALUES (2, 2, 'Boys Clothes', 'https://d2ul0w83gls0j4.cloudfront.net/taxonomy/300/0102/20171024151632.jpg', 'C0002', 'Shirts', 13.00, 1, 1);
 INSERT INTO "public"."product_in_order" VALUES (2147483649, 2, 'Under Armour', 'https://assets.academy.com/mgen/33/20088533.jpg?is=500,500', 'C0001', 'T-shirt', 10.00, 1, 2147483648);
 
--- ----------------------------
--- Table structure for product_info
--- ----------------------------
-DROP TABLE IF EXISTS "public"."product_info";
-CREATE TABLE "public"."product_info" (
-  "product_id" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "category_type" int4,
-  "create_time" timestamp(6),
-  "product_description" varchar(255) COLLATE "pg_catalog"."default",
-  "product_icon" varchar(255) COLLATE "pg_catalog"."default",
-  "product_name" varchar(255) COLLATE "pg_catalog"."default",
-  "product_price" numeric(19,2),
-  "product_status" int4,
-  "product_stock" int4,
-  "update_time" timestamp(6)
-)
-;
 
 -- ----------------------------
 -- Records of product_info
@@ -144,67 +74,9 @@ INSERT INTO "public"."product_info" VALUES ('F0001', 1, '2018-03-10 12:15:05', '
 INSERT INTO "public"."product_info" VALUES ('F0002', 1, '2018-03-10 12:16:44', 'Family s', 'http://cdn1.thecomeback.com/wp-content/uploads/2017/05/mcdonalds_food-832x447.png', 'McDonald‘s Food', 20.00, 0, 23, '2018-03-10 12:16:44');
 
 -- ----------------------------
--- Table structure for users
--- ----------------------------
-DROP TABLE IF EXISTS "public"."users";
-CREATE TABLE "public"."users" (
-  "id" int8 NOT NULL,
-  "active" varbit(1) NOT NULL,
-  "address" varchar(255) COLLATE "pg_catalog"."default",
-  "email" varchar(255) COLLATE "pg_catalog"."default",
-  "name" varchar(255) COLLATE "pg_catalog"."default",
-  "password" varchar(255) COLLATE "pg_catalog"."default",
-  "phone" varchar(255) COLLATE "pg_catalog"."default",
-  "role" varchar(255) COLLATE "pg_catalog"."default"
-)
-;
-
--- ----------------------------
 -- Records of users
 -- ----------------------------
 INSERT INTO "public"."users" VALUES (2147483641, '1', '3200 West Road', 'customer1@email.com', 'customer1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', '123456789', 'ROLE_CUSTOMER');
 INSERT INTO "public"."users" VALUES (2147483642, '1', '2000 John Road', 'manager1@email.com', 'manager1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', '987654321', 'ROLE_MANAGER');
 INSERT INTO "public"."users" VALUES (2147483643, '1', '222 East Drive ', 'employee1@email.com', 'employee1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', '123123122', 'ROLE_EMPLOYEE');
 INSERT INTO "public"."users" VALUES (2147483645, '1', '3100 Western Road A', 'customer2@email.com', 'customer2', '$2a$10$0oho5eUbDqKrLH026A2YXuCGnpq07xJpuG/Qu.PYb1VCvi2VMXWNi', '2343456', 'ROLE_CUSTOMER');
-
--- ----------------------------
--- Primary Key structure for table order_main
--- ----------------------------
-ALTER TABLE "public"."order_main" ADD CONSTRAINT "order_main_pkey" PRIMARY KEY ("order_id");
-
--- ----------------------------
--- Uniques structure for table product_category
--- ----------------------------
-ALTER TABLE "public"."product_category" ADD CONSTRAINT "product_category_category_type_key" UNIQUE ("category_type");
-
--- ----------------------------
--- Primary Key structure for table product_category
--- ----------------------------
-ALTER TABLE "public"."product_category" ADD CONSTRAINT "product_category_pkey" PRIMARY KEY ("category_id");
-
--- ----------------------------
--- Indexes structure for table product_in_order
--- ----------------------------
-CREATE INDEX "product_in_order_FKt0sfj3ffasrift1c4lv3ra85e" ON "public"."product_in_order" USING btree (
-  "order_id" "pg_catalog"."int8_ops" ASC NULLS LAST
-);
-
--- ----------------------------
--- Primary Key structure for table product_in_order
--- ----------------------------
-ALTER TABLE "public"."product_in_order" ADD CONSTRAINT "product_in_order_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table product_info
--- ----------------------------
-ALTER TABLE "public"."product_info" ADD CONSTRAINT "product_info_pkey" PRIMARY KEY ("product_id");
-
--- ----------------------------
--- Uniques structure for table users
--- ----------------------------
-ALTER TABLE "public"."users" ADD CONSTRAINT "users_email_key" UNIQUE ("email");
-
--- ----------------------------
--- Primary Key structure for table users
--- ----------------------------
-ALTER TABLE "public"."users" ADD CONSTRAINT "users_pkey" PRIMARY KEY ("id");
