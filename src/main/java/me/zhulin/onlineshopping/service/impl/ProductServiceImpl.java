@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductInfo> findAll(Pageable pageable) {
-        return productInfoRepository.findAllOrderByProductIdAsc(pageable);
+        return productInfoRepository.findAllByOrderByProductId(pageable);
     }
 
     @Override
