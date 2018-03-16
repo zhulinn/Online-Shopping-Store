@@ -1,8 +1,9 @@
 # Online-Shopping-Store
 A web application for online shopping with Spring Boot, FreeMarker &amp; Hibernate
-<img src="https://raw.githubusercontent.com/zhulinn/zhulinn.github.io/hexo/source/uploads/post_pics/shop-cart.png">
 
 <strong>Stacks: </strong>Spring Boot, Spring Security, FreeMarker, Spring Data JPA...
+<img src="https://raw.githubusercontent.com/zhulinn/zhulinn.github.io/hexo/source/uploads/post_pics/shop-cart.png">
+
 
 ## About
 There is a login and registration functionality included.  
