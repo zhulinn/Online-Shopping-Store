@@ -3,7 +3,7 @@
 <body>
 <div class="container ">
     <#include "../partials/_nav.ftl">
-    <h1 align="center" class="display-4 mb-5">My Cart</h1>
+    <h1 align="center" class="display-4 mb-5">Order Detail</h1>
 
 <#--Cart Detail Table-->
     <table class="table table-striped text-center">

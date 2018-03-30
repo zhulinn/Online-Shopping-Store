@@ -24,11 +24,12 @@
         </div>
 
         <div class="navbar-nav ml-auto">
-
-            <a class="nav-item nav-link " href="/cart">
-                <i class="fa fa-shopping-cart"></i>
-                Cart
-            </a>
+            <#if !currentUser?? || currentUser.role=="ROLE_CUSTOMER"  >
+                <a class="nav-item nav-link " href="/cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    Cart
+                </a>
+            </#if>
             <#if currentUser?? >
                 <a class="nav-item nav-link " href="/order">
                     <i class="fa fa-list-ul"></i>
