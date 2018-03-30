@@ -30,8 +30,11 @@
             <td class="align-middle">
                 <a style="display: block" href="/seller/product/${productInfo.getProductId()}/edit">
                     Edit</a>
-                <a style="display: block" href="/seller/product/${productInfo.getProductId()}/delete">
-                    Remove</a>
+                <#if currentUser.role=="ROLE_MANAGER">
+                    <a style="display: block" href="/seller/product/${productInfo.getProductId()}/delete">
+                        Remove</a>
+                </#if>
+
             </td>
 
         </#list>

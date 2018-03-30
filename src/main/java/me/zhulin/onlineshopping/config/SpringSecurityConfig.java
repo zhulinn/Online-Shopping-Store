@@ -57,13 +57,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 /**
                  * manager create product...
                  */
-                .antMatchers("/order/**").authenticated()
-                .antMatchers("/profiles/**").authenticated()
+                .antMatchers("/order/finish/**").access("hasAnyRole('EMPLOYEE', 'MANAGER')")
                 .antMatchers("/seller/product/new").access("hasAnyRole('MANAGER')")
+                .antMatchers("/seller/**/delete").access("hasAnyRole( 'MANAGER')")
                 .antMatchers("/seller/**").access("hasAnyRole('EMPLOYEE', 'MANAGER')")
                 // Customer
                 .antMatchers("/cart/checkout/**").access("hasAnyRole('CUSTOMER')")
                 .antMatchers("/cart/**").access("!hasAnyRole('EMPLOYEE', 'MANAGER')")
+
+                .antMatchers("/order/**").authenticated()
+                .antMatchers("/profiles/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

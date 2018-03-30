@@ -62,13 +62,13 @@
             <div class="form-group">
                 <label>Email address</label>
                  <@spring.bind "user.email"/>
-                <input readonly value="${currentUser.email!}" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email" required="true" autofocus="true">
+                <input readonly value="${currentUser.email!}" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email" required="true" >
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
             <div class="form-group">
                 <label>Name</label>
                  <@spring.bind "user.name"/>
-                <input value="${currentUser.name!}"type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Your name" required="true">
+                <input value="${currentUser.name!}"type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Your name" required="true" autofocus="true">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
             <div class="form-group">
