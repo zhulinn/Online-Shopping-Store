@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class CurrentUserControllerAdvice {
 
     @Autowired
+
     UserService userService;
 
     @ModelAttribute("currentUser")

@@ -5,6 +5,7 @@ import me.zhulin.onlineshopping.enums.ProductStatusEnum;
 import me.zhulin.onlineshopping.enums.ResultEnum;
 import me.zhulin.onlineshopping.exception.MyException;
 import me.zhulin.onlineshopping.repository.ProductInfoRepository;
+import me.zhulin.onlineshopping.service.CategoryService;
 import me.zhulin.onlineshopping.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductInfoRepository productInfoRepository;
+
+    @Autowired
+    CategoryService categoryService;
 
     @Override
     public ProductInfo findOne(String productId) {
@@ -88,6 +92,18 @@ public class ProductServiceImpl implements ProductService {
 
         //更新
         productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productInfoRepository.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo update(ProductInfo productInfo) {
+        // if null throw exception
+        categoryService.findByCategoryType(productInfo.getCategoryType());
+        if(productInfo.getProductStatus() > 1) {
+            throw new MyException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
         return productInfoRepository.save(productInfo);
     }
 }

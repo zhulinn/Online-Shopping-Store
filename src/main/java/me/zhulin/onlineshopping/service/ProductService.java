@@ -30,6 +30,9 @@ public interface ProductService {
 
     ProductInfo onSale(String productId);
 
+    ProductInfo update(ProductInfo productInfo);
+
+
 
 
 }

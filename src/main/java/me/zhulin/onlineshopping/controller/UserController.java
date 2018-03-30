@@ -6,6 +6,7 @@ import me.zhulin.onlineshopping.repository.UserRepository;
 import me.zhulin.onlineshopping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,16 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/")
+    public String Handler(Authentication authentication) {
+        if (authentication == null || authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
+            return "forward:" + "/product";
+        } else {
+            return "forward:" + "/seller";
+        }
+
     }
 
     @GetMapping("/register")
@@ -65,7 +76,7 @@ public class UserController {
     }
 
     @PostMapping("/profiles")
-    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal, Model model){
+    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal, Model model) {
         // 使用BindingResult来验证表单数据的正确性
         if (bindingResult.hasErrors()) {
             // 将提交的表单内容原封不动的返回到页面再展示出来
@@ -73,14 +84,15 @@ public class UserController {
             return "/user/show";
         }
         //Access deny
-        if(!principal.getName().equals(user.getEmail())) {
+        if (!principal.getName().equals(user.getEmail())) {
             return "redirect:" + "/403";
         }
         userService.update(user);
         model.addAttribute("msg", "Profils is updated!");
         model.addAttribute("url", "/profiles");
-        return  "common/success";
+        return "common/success";
     }
+
     @GetMapping("/403")
     public String accessDeney(Model model) {
         model.addAttribute("msg", "Access denied!");

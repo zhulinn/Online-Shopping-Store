@@ -8,19 +8,26 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
         <div class="navbar-nav">
-            <a class="nav-item nav-link <#if category?? && category.categoryType == 0>active</#if>" href="/category/0">
-                Books
-            </a>
-            <a class="nav-item nav-link <#if category?? && category.categoryType == 1>active</#if>" href="/category/1">
-                Food
-            </a>
-            <a class="nav-item nav-link <#if category?? && category.categoryType == 2>active</#if>" href="/category/2">
-                Clothes
-            </a>
-            <a class="nav-item nav-link <#if category?? && category.categoryType == 3>active</#if>" href="/category/3">
-                Drink
-            </a>
+            <#if !currentUser?? || currentUser.role=="ROLE_CUSTOMER">
+                <a class="nav-item nav-link <#if category?? && category.categoryType == 0>active</#if>"
+                   href="/category/0">
+                    Books
+                </a>
+                <a class="nav-item nav-link <#if category?? && category.categoryType == 1>active</#if>"
+                   href="/category/1">
+                    Food
+                </a>
+                <a class="nav-item nav-link <#if category?? && category.categoryType == 2>active</#if>"
+                   href="/category/2">
+                    Clothes
+                </a>
+                <a class="nav-item nav-link <#if category?? && category.categoryType == 3>active</#if>"
+                   href="/category/3">
+                    Drink
+                </a>
+            </#if>
         </div>
 
         <div class="navbar-nav ml-auto">
