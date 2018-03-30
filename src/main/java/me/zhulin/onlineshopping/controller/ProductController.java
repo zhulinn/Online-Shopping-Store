@@ -12,8 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -77,8 +79,42 @@ public class ProductController {
         return new ModelAndView("/product/sellerIndex", map);
     }
 
+    @PostMapping("/seller/product/new")
+    public String create(
+                         @RequestParam("categoryType") Integer categoryType,
+                         @RequestParam("productStatus") Integer productStatus,
+                         @Valid @ModelAttribute("product") ProductInfo product,
+                         RedirectAttributes redirectAttributes,
+                         BindingResult bindingResult, Model model) {
+        ProductInfo productIdExists = productService.findOne(product.getProductId());
+        if (productIdExists != null) {
+            bindingResult
+                    .rejectValue("productId", "error.product",
+                            "There is already a product with the code provided");
+        }
+        // 使用BindingResult来验证表单数据的正确性
+        if (bindingResult.hasErrors()) {
+            // 将提交的表单内容原封不动的返回到页面再展示出来
+            redirectAttributes.addFlashAttribute("product", product);
+            return "product/sellerCreate";
+        }
+        product.setProductStatus(productStatus);
+        product.setCategoryType(categoryType);
+        productService.save(product);
+        return "redirect:" + "/";
+    }
+
+    @GetMapping("/seller/product/new")
+    public String createForm(ProductInfo product,
+                            Model model) {
+
+        model.addAttribute("product", product);
+        return "product/sellerCreate";
+    }
+
     @GetMapping("/seller/product/{id}/edit")
-    public String productEdit(@PathVariable("id") String productId, Model model){
+    public String productEdit(@PathVariable("id") String productId,
+                               Model model){
         ProductInfo product = productService.findOne(productId);
         model.addAttribute("product", product);
 
@@ -89,7 +125,17 @@ public class ProductController {
     public String edit(@PathVariable("id") String productId,
                        @RequestParam("categoryType") Integer categoryType,
                        @RequestParam("productStatus") Integer productStatus,
-                       @Valid @ModelAttribute("product") ProductInfo product, Model model){
+                       @Valid @ModelAttribute("product") ProductInfo product,
+                       RedirectAttributes redirectAttributes,
+                       BindingResult bindingResult, Model model){
+
+        // 使用BindingResult来验证表单数据的正确性
+        if (bindingResult.hasErrors()) {
+            // 将提交的表单内容原封不动的返回到页面再展示出来
+            redirectAttributes.addFlashAttribute("product", product);
+            return "/seller/product/"+ productId + "/edit";
+
+        }
         if (!productId.equals(product.getProductId())) {
             model.addAttribute("msg", "Product id is not consistent!");
             model.addAttribute("url", "/");
@@ -99,6 +145,12 @@ public class ProductController {
         product.setProductStatus(productStatus);
         productService.update(product);
         return "redirect:" + "/";
+    }
+
+    @GetMapping("/seller/product/{id}/delete")
+    public String delete(@PathVariable("id") String productId) {
+            productService.delete(productId);
+            return "redirect:" + "/";
     }
 
 }

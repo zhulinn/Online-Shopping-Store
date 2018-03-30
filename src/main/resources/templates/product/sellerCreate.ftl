@@ -7,13 +7,13 @@
     <h1 align="center" class="display-4 mb-5">Edit Product</h1>
 <#--<div class="text-center justify-content-center">-->
     <div style="width:40%; margin: 25px auto">
-        <form action="/seller/product/${product.getProductId()}/edit" method="post">
+        <form action="/seller/product/new" method="post">
             <@spring.bind "product"/>
         <#--Id-->
             <div class="form-group">
                 <label>Code</label>
                  <@spring.bind "product.productId"/>
-                <input readonly value="${product.productId!}" type="text" class="form-control form-control-lg"
+                <input  value="${product.productId!}" placeholder="Required" type="text" class="form-control form-control-lg"
                        id="productId" name="productId" required="true">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
@@ -21,8 +21,8 @@
             <div class="form-group">
                 <label>Photo Link</label>
                 <@spring.bind "product.productIcon"/>
-                <input value="${product.productIcon!}" type="text" class="form-control form-control-lg" id="productIcon"
-                       name="productIcon" placeholder="Photo">
+                <input value="${product.productIcon!}" placeholder="Optional" type="text" class="form-control form-control-lg" id="productIcon"
+                       name="productIcon">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
 
@@ -30,8 +30,8 @@
             <div class="form-group">
                 <label>Name</label>
                  <@spring.bind "product.productName"/>
-                <input value="${product.productName!}" type="text" class="form-control form-control-lg" id="productName"
-                       name="productName" placeholder="Name" required="true">
+                <input value="${product.productName!}"  placeholder="Required" type="text" class="form-control form-control-lg" id="productName"
+                       name="productName" required="true">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
 
@@ -53,7 +53,7 @@
                 <@spring.bind "product.productDescription"/>
                 <textarea class="form-control form-control-lg text-left"
                           id="productDescription" name="productDescription"
-                          placeholder="Description">${product.productDescription!}</textarea>
+                          placeholder="Optional">${product.productDescription!}</textarea>
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
         <#--Price-->
@@ -65,7 +65,7 @@
                        id="productPrice"
                        name="productPrice"
                        step="0.01"
-                       value="${product.productPrice!}"
+                       value="${product.productPrice!'5.00'}"
                        required="true">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
@@ -78,7 +78,7 @@
                        id="productStock"
                        name="productStock"
                        min="0"
-                       value="${product.productStock!}"
+                       value="${product.productStock!'50'}"
                        required="true">
                 <span class="text-danger"><@spring.showErrors ""/></span>
             </div>
@@ -100,8 +100,4 @@
 </div>
 <#include "../partials/_footer.ftl">
 </body>
-<script>
-    $('#categoryType option[value=${product.categoryType}]').attr('selected', 'selected');
-    $('#productStatus option[value=${product.productStatus}]').attr('selected', 'selected');
-</script>
 </html>
