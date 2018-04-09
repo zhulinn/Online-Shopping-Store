@@ -6,6 +6,9 @@
 <div class="container ">
     <h1 align="center" class="display-4 mb-5">QQ Music Top 50</h1>
 
+
+    <h1 align="center" class="display-8 mb-1" id="title"></h1>
+
     <div style="margin: 25px auto; display: table;" >
         <audio  onended="next()" id="audio" controls>
             <source id="audioSource" src="" type="audio/mpeg">
@@ -49,11 +52,15 @@
 <script src="APlayer.min.js"></script>
 
 <script>
-    function play(song) {
-        document.getElementById("audioSource").src = song.getAttribute('data-src');
+    function play(li) {
+        document.getElementById("audioSource").src = li.getAttribute('data-src');
         var audio = document.getElementById('audio');
+
         audio.load(); //call this to just preload the audio without playing
         audio.play(); //call this to play the song right away
+        var i = li.id;
+
+        document.getElementById("title").innerHTML = $("tbody tr")[i].firstElementChild.innerHTML;
     }
     function next() {
         var id = Math.floor((Math.random() * 50));
