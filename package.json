@@ -1,0 +1,24 @@
+{
+  "name": "online-shopping",
+  "version": "1.0.0",
+  "description": "A web application for online shopping with Spring Boot, FreeMarker &amp; Hibernate",
+  "main": "app.js",
+  "dependencies": {
+    "ap": "^0.2.0",
+    "aplayer": "^1.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhulinn/Online-Shopping-Store.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhulinn/Online-Shopping-Store/issues"
+  },
+  "homepage": "https://github.com/zhulinn/Online-Shopping-Store#readme"
+}
