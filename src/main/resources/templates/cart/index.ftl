@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <#include "../partials/_header.ftl">
 <body>
 <div class="container ">
@@ -49,7 +49,9 @@
     <#if items?has_content >
         <div>
             <h5 style="display: inline;">Total: ${total?string.currency}</h5>
-            <a class="btn btn-warning float-right" href="/cart/checkout">Checkout</a>
+            <form action ="/cart/checkout" method="post">
+                <button type="submit" class="btn btn-warning float-right">Checkout</button>
+            </form>
         </div>
     <#else>
     <#--Empty Cart-->

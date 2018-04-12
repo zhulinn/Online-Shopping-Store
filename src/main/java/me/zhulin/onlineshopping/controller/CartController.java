@@ -53,7 +53,7 @@ public class CartController {
         return "redirect:" + "/cart";
     }
 
-    @GetMapping("/checkout")
+    @PostMapping("/checkout")
     public  String checkout(Model model, Principal principal) {
         User user = userService.findOne(principal.getName());// Email as username
         cartService.checkout(user);

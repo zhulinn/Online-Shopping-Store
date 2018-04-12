@@ -17,7 +17,8 @@
                             </p>
                             <p class="card-text">
                                 <strong>Price: </strong>
-                                <label id="price"  value="${productInfo.getProductPrice()}">${productInfo.getProductPrice()?string.currency}</label>
+                                <label id="price"
+                                       value="${productInfo.getProductPrice()}">${productInfo.getProductPrice()?string.currency}</label>
                             </p>
                             <p class="card-text"><strong>Stock: </strong>${productInfo.getProductStock()}</p>
 
@@ -32,13 +33,13 @@
                                    max="${productInfo.getProductStock()}"
                                    oninput="chageSubtotal()">
                             <p class="card-text"><strong>Subtotal: </strong>
-                                <#--For JavaScript inHTML-->
+                            <#--For JavaScript inHTML-->
                                 <label id="subtotal">${(productInfo.getProductPrice())?string.currency}</label>
                             </p>
                         </div>
                         <button type="submit"
-                                class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>"
-                                href="/product/${productInfo.getProductId()}">Add to Cart
+                                class="btn btn-primary btn-lg <#if productInfo.getProductStatus()==1>disabled</#if>">
+                            Add to Cart
                         </button>
                     </form>
 
@@ -55,6 +56,7 @@
     var quantity_e = document.getElementById("quantity");
     var price = parseFloat(document.getElementById("price").innerText.substr(1));
     var unit = price_e.innerHTML.charAt(0);
+
     function chageSubtotal() {
         var subtotal = (parseFloat(quantity_e.value) * price).toFixed(2);
         subtotal_e.innerHTML = unit + subtotal;

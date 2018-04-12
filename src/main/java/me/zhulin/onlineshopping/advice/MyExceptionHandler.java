@@ -17,11 +17,11 @@ public class MyExceptionHandler {
         return "/common/error";
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public String errorHandler(Exception ex, Model model){
-//        model.addAttribute("msg", "Unknown Error!");
-//        return "/common/error";
-//    }
+    @ExceptionHandler(Exception.class)
+    public String errorHandler(Exception ex, Model model){
+        model.addAttribute("msg", "Unknown Error!");
+        return "/common/error";
+    }
 
 
 }

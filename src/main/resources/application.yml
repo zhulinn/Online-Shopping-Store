@@ -12,7 +12,7 @@ spring:
     show-sql: false
 #    generate-ddl: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     database: postgresql
 #      dialect: org.hibernate.dialect.MySQL5Dialect
 

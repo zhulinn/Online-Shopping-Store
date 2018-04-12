@@ -110,6 +110,12 @@ public class UserController {
         model.addAttribute("msg", "Access denied!");
         return "/common/error";
     }
+    @GetMapping("/404")
+    public String notFound(Model model) {
+        model.addAttribute("msg", "Page not found!");
+        return "/common/error";
+    }
+
 
     @GetMapping("/music")
     public String qqMusic(Model model) throws IOException {
