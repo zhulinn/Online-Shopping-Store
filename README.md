@@ -4,6 +4,11 @@ A web application for online shopping with Spring Boot, FreeMarker &amp; Hiberna
 <strong>Stacks: </strong>Spring Boot, Spring Security, FreeMarker, Spring Data JPA...
 <img src="https://raw.githubusercontent.com/zhulinn/zhulinn.github.io/hexo/source/uploads/post_pics/shop-cart.png">
 
+## How to run
+1. Configue datasource in `application.yml`. Here I use PostgreSQL.
+2. The inial data is be imported automatically by `import.sql`
+3. Run `OnlineShoppingApplication.java`.
+
 
 ## About
 There is a login and registration functionality included.  
