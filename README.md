@@ -1,6 +1,9 @@
 # Online-Shopping-Store
 A web application for online shopping with Spring Boot, FreeMarker &amp; Hibernate
 
+**UPDATE:** Angular 7, persistent shopping cart, JWT, etc. Check here: [SpringBoot-Angular7-ShoppingCart](https://github.com/zhulinn/SpringBoot-Angular7-ShoppingCart)
+
+
 <strong>Stacks: </strong>Spring Boot, Spring Security, FreeMarker, Spring Data JPA...
 <img src="https://raw.githubusercontent.com/zhulinn/blog/hexo/source/uploads/post_pics/shop-cart.png">
 
@@ -19,9 +22,4 @@ There are three roles for user, such as customer, employee, mangager.
   
 Demo :point_right: [E-Shop](https://e-shop-.herokuapp.com/)  
 The demo is deployed on [Heroku](https://www.heroku.com/), using PostgreSQL as database.  
-  
-**Optimise**
-1. Memory Optimazation with Redis  
-2. Distributed Lock with Redis for concurrency  
-  
-## Still on process...
+ 
