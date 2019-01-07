@@ -2,8 +2,7 @@
 # Online-Shopping-Store
 A web application for online shopping with Spring Boot, FreeMarker &amp; Hibernate
 
-## UPDATE 
-Angular 7, persistent shopping cart, JWT, etc. Check here: [SpringBoot-Angular7-ShoppingCart](https://github.com/zhulinn/SpringBoot-Angular7-ShoppingCart)
+> **\[UPDATE\]:** Angular 7, persistent shopping cart, JWT, etc. Check here: [SpringBoot-Angular7-ShoppingCart](https://github.com/zhulinn/SpringBoot-Angular7-ShoppingCart)
 
 
 
