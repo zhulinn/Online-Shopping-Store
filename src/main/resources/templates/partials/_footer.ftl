@@ -10,7 +10,7 @@
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center">
         © 2018 Copyright:
-        <a href="https://zhulin.me"> zhulin.me </a>
+        <a href="https://zlin.me"> zlin.me </a>
     </div>
     <!--/.Copyright-->
 </div>
