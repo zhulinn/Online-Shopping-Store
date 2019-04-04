@@ -22,6 +22,6 @@ There are three roles for user, such as customer, employee, mangager.
 **EMPLOYEE**: The users with this role can view list of  orders, details of an orderMain and their profile.  
 **MANAGER**: The users with this role can view list of orders, details of an orderMain and their profile, add and edit products.  
   
-Demo :point_right: [E-Shop](https://e-shop-.herokuapp.com/)  
+Demo :point_right: [E-Shop](https://e-ishop.herokuapp.com/)  
 The demo is deployed on [Heroku](https://www.heroku.com/), using PostgreSQL as database.  
  
